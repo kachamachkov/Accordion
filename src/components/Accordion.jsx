@@ -1,39 +1,24 @@
-import { useState } from 'react';
 import data from './data';
+import { useState } from 'react';
 
-export default function Accordion() {
-    const [selected, setSelected] = useState(null);
+const Accordion = () => {
 
-    function handleSingleSelection(getCurrentId) {
-        setSelected(getCurrentId);
-    }
+	const [selected, setSelected] = useState(null);
 
-    return (
-        <div className="wrapper">
-            <div className="accordion">
-                {data && data.length > 0 ? (
-                    data.map((dataItem) => (
-                        <div className="item" key={dataItem.id}>
-                            <div
-                                onClick={() =>
-                                    handleSingleSelection(dataItem.id)
-                                }
-                                className="title"
-                            >
-                                <h3>{dataItem.question}</h3>
-                                <span>+</span>
-                            </div>
-                            {selected === dataItem.id ? (
-                                <div className="content">
-                                    {dataItem.answer}{' '}
-                                </div>
-                            ) : null}
-                        </div>
-                    ))
-                ) : (
-                    <div>No data found!</div>
-                )}
-            </div>
-        </div>
-    );
-}
+	return (
+		<div>
+			{
+				data && data.length > 0 ?
+					data.map(item =>
+						<div key={item.id}>
+							<h2 >{item.question}</h2>
+							<span>+</span>
+						</div>
+					)
+					:
+					<div>No data found!</div>
+			}
+		</div>
+	);
+};
+export default Accordion;
