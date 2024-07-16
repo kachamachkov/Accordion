@@ -5,57 +5,52 @@ import './styles.css';
 const Accordion = () => {
 
   const [selected, setSelected] = useState(null);
-  const [enableMultiSelection, setEnableMultiSelection] = useState(false);
+  const [multiSelect, setMultiSelect] = useState(false);
   const [multiple, setMultiple] = useState([]);
 
-  const handleSingleSelection = (id) => {
-    setSelected(id === selected ? null : id);
+  const handleSingleSelect = (id) => {
+    setSelected(selected === id ? null : id);
   };
 
-  const handleMultiSelection = (id) => {
+  const handleMultiSelect = (id) => {
     let copyMultiple = [...multiple];
 
-    const findIndexOfCurrentId = copyMultiple.indexOf(id);
+    const indexOfQuestion = copyMultiple.indexOf(id);
 
-    if (findIndexOfCurrentId === -1) {
+    if (indexOfQuestion == -1) {
       copyMultiple.push(id);
     } else {
-      copyMultiple.splice(findIndexOfCurrentId, 1);
-    }
+      copyMultiple.splice(indexOfQuestion, 1);
 
+    }
     setMultiple(copyMultiple);
   };
 
-  console.log(selected, multiple);
-
-
   return (
+
     <div className="wrapper">
-      <button onClick={() => setEnableMultiSelection(!enableMultiSelection)}>Enable Multi Selection</button>
+      <button onClick={() => setMultiSelect(!multiSelect)}>Toggle Multi Selection - {multiSelect ? 'On' : 'Off'}</button>
       <div className="accordion">
         {
-          data && data.length > 0 ? data.map(dataItem =>
-            <div className="item" key={dataItem.id}>
-              <h3 className="title" onClick={
-                enableMultiSelection
-                  ? () => handleMultiSelection(dataItem.id)
-                  : () => handleSingleSelection(dataItem.id)}>{dataItem.question}</h3>
-              <span onClick={
-                enableMultiSelection
-                  ? () => handleMultiSelection(dataItem.id)
-                  : () => handleSingleSelection(dataItem.id)}>+</span>
-              {
-                selected === dataItem.id || multiple.indexOf(dataItem.id) !== -1 ?
-                  (<div className="content">{dataItem.answer}</div>)
-                  : null
-              }
-            </div>
-          ) : <div>No data found</div>
-        }
+          data && data.length > 0 ?
+            data.map(dataItem =>
+              <div className="item" key={dataItem.id}>
+                <div className="title">{dataItem.question}</div>
+                <span onClick={multiSelect ?
+                  () => handleMultiSelect(dataItem.id) :
+                  () => handleSingleSelect(dataItem.id)}>+</span>
 
+                {
+                  selected === dataItem.id || multiple.indexOf(dataItem.id) ?
+                    <div>{dataItem.answer}</div> :
+                    null
+                }
+              </div>
+            ) :
+            <div> No data found! </div>
+        }
       </div>
     </div>
   );
-
 };
 export default Accordion;
