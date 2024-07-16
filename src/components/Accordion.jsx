@@ -7,7 +7,8 @@ const Accordion = () => {
 
 	function handleSingleSelection(getCurrentId) {
 		// set clicked title ID to selected
-		setSelected(getCurrentId);
+		// add click switching
+		setSelected(getCurrentId === selected ? null : getCurrentId);
 	}
 
 	return (
