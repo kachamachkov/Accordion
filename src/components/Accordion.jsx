@@ -1,33 +1,31 @@
-import data from './data';
-import { useState } from 'react';
+import { useState } from "react";
+import data from "./data";
 
 const Accordion = () => {
 
 	const [selected, setSelected] = useState(null);
 
-	const handleQuestionClick = (questionId) => {
-		setSelected(questionId);
+	const handleClick = (id) => {
+
+		setSelect(true);
 	};
 
 	return (
-		<div>
-			{
-				data && data.length > 0 ?
-					data.map(item =>
-						<div key={item.id}>
-							<h2 onClick={() => handleQuestionClick(item.id)}>{item.question}</h2>
-							<span onClick={() => handleQuestionClick(item.id)}>+</span>
-							<div>
-								{selected === item.id ?
-									item.answer
-									: null
-								}
-							</div>
-						</div>
-					)
-					:
-					<div>No data found!</div>
-			}
+		<div className="wrapper">
+			<div className="accordion">
+				{
+					data && data.length > 0 ?
+						data.map(dataItem =>
+							<div className="item" key={dataItem.id}>
+								<div className="title">
+									<h3>{dataItem.question}</h3>
+									<span>+</span>
+								</div>
+							</div>)
+						: <div>No data found!</div>
+
+				}
+			</div>
 		</div>
 	);
 };
