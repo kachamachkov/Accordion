@@ -1,8 +1,19 @@
-## Accordion - React student project
+### 1. Personal project - ReactJS Accordion Component
 
-### Goal
-Practice creation of simple accordion components and basic hooks (useState, useEffect)
-## Description:
+### 2. Goal:
+    - Practice simple components
+    - useState
+    - TailwindCSS
+    - Dynamic rendering based on state
+### 3. Description:
+    - Re-usable accordion components for a frequently asked questions section (FAQ)
+    - Questions/answers data is local
 
+### 4. Installation steps:
+    - Run the following commands in the project folder
+   ```js
+    npm i
+    npm run dev
+   ```
 
-## How to run:
+### 5. Images:
