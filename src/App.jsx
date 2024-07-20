@@ -1,12 +1,11 @@
-import './App.css';
-import Accordion from './components/Accordion';
 
 function App() {
-  return (
-    <div className="app">
-      <Accordion />
-    </div>
-  );
+
+    return (
+        <>
+            <h1 className="font-bold text-2xl">Hello</h1>
+        </>
+    );
 }
 
 export default App;
